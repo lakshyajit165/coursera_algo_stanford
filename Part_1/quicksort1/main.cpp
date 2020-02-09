@@ -1,3 +1,9 @@
+/*
+ * Taking the first element of the array as pivot
+ *
+ * */
+
+
 #include<iostream>
 #include<cstdlib>
 
@@ -14,30 +20,21 @@ void swap(int *a, int *b)
     *b = temp;
 }
 
-// Partitioning the array on the basis of values at high as pivot value.
-int Partition(int a[], int low, int high)
-{
-    int pivot, index, i;
-    index = low;
-    pivot = high;
+int Partition(int a[], int low, int high) {
 
+    int pivot = a[low];
 
+    int i = low + 1;
 
-    // Getting index of the pivot.
-    for(i=low; i < high; i++)
-    {
-        if(a[i] < a[pivot])
-        {
-            swap(&a[i], &a[index]);
-            index++;
-
+    for(int j = low+1; j<=high; j++){
+        if(a[j] < pivot){
+            swap(&a[j], &a[i]);
+            i++;
         }
+        comparisons++;
     }
-    // Swapping value at high and at the index obtained.
-    swap(&a[pivot], &a[index]);
-
-
-    return index;
+    swap(&a[low], &a[i-1]);
+    return i-1;
 }
 
 
@@ -51,7 +48,9 @@ int QuickSort(int a[], int low, int high)
         pindex = Partition(a, low, high);
         // Recursively implementing QuickSort.
         QuickSort(a, low, pindex-1);
+
         QuickSort(a, pindex+1, high);
+
     }
     return 0;
 }
@@ -76,6 +75,7 @@ int main()
         cout<<"->"<<arr[i];
 
     cout<<endl;
+    cout<<comparisons;
 
     return 0;
 }
