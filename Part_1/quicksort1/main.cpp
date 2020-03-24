@@ -22,9 +22,9 @@ void swap(int *a, int *b)
 
 int Partition(int a[], int low, int high) {
 
-    int pivot = a[low];
-
-    int i = low + 1;
+    int pivot = a[high];
+    swap(&a[high], &a[low]);
+    int i = low+1;
 
     for(int j = low+1; j<=high; j++){
         if(a[j] < pivot){
@@ -33,8 +33,8 @@ int Partition(int a[], int low, int high) {
         }
         comparisons++;
     }
-    swap(&a[low], &a[i-1]);
-    return i-1;
+
+    return i;
 }
 
 

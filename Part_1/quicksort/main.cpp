@@ -32,6 +32,7 @@ int Partition(int a[], int low, int high)
             index++;
 
         }
+        comparisons++;
     }
     // Swapping value at high and at the index obtained.
     swap(&a[pivot], &a[index]);
@@ -76,7 +77,7 @@ int main()
         cout<<"->"<<arr[i];
 
     cout<<endl;
-
+    cout<<comparisons;
     return 0;
 }
 
